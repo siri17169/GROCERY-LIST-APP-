@@ -392,3 +392,80 @@ class _CatDetail extends StatelessWidget {
     );
   }
 }
+
+import 'package:flutter/material.dart';
+
+class LogoutPage extends StatelessWidget {
+  const LogoutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Account"),
+        backgroundColor: Colors.green, // Matching your grocery theme
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.exit_to_app,
+                size: 100,
+                color: Colors.green,
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Are you sure you want to log out?",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "You will need to enter your credentials to access your grocery list again.",
+                style: TextStyle(color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              
+              // Logout Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                  ),
+                  onPressed: () {
+                    // 1. Clear user session logic goes here
+                    
+                    // 2. Navigate back to Login Screen and clear navigation stack
+                    Navigator.pushNamedAndRemoveUntil(
+                      context, 
+                      '/login', 
+                      (route) => false,
+                    );
+                  },
+                  child: const Text(
+                    "Logout",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ),
+              ),
+              
+              const SizedBox(height: 15),
+              
+              // Cancel Button
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Cancel", style: TextStyle(color: Colors.green)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
