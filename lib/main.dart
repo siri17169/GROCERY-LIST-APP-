@@ -998,7 +998,7 @@ class _GroceryListScreenState extends State<GroceryListScreen> {
       'Meat & Fish': '🥩',
       'Other': '📦',
     };
-
+//to show dialog//
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
