@@ -47,98 +47,46 @@ final List<Map<String, dynamic>> categoriesData = [
   {"n": "Spices", "c": const Color(0xFFFFE082), "i": "🌶️"},
 ];
 
-// --- UPDATED LOGIN PAGE ---
+// --- LOGIN PAGE ---
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF81C784), Color(0xFF388E3C)], // Fresh green gradient
-          ),
-        ),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              // YOUR LOGO
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.shopping_basket_rounded, size: 100, color: Colors.white),
+      backgroundColor: const Color(0xFF4CAF50),
+      body: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.shopping_basket_outlined, size: 100, color: Colors.white),
+            const Text("MeraDukhan", style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white)),
+            const SizedBox(height: 40),
+            _loginField("Email Address"), const SizedBox(height: 15),
+            _loginField("Password", obscure: true), const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity, height: 55,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1B5E20), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const MainNav())),
+                child: const Text("LOGIN", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               ),
-              const SizedBox(height: 20),
-              const Text("MeraDukhan", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1.2)),
-              const Text("Your Smart Grocery Partner", style: TextStyle(fontSize: 14, color: Colors.white70)),
-              const SizedBox(height: 60),
-              
-              // INPUT FIELDS
-              _loginField(Icons.email_outlined, "Email Address"), 
-              const SizedBox(height: 20),
-              _loginField(Icons.lock_outline, "Password", obscure: true), 
-              
-              const SizedBox(height: 40),
-              
-              // LOGIN BUTTON
-              SizedBox(
-                width: double.infinity, height: 60,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: const Color(0xFF388E3C),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                  ),
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const MainNav())),
-                  child: const Text("GET STARTED", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextButton(
-                onPressed: () {},
-                child: const Text("Create an Account", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-              ),
-              const SizedBox(height: 50),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
-
-  Widget _loginField(IconData icon, String hint, {bool obscure = false}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 5))],
-      ),
-      child: TextField(
-        obscureText: obscure,
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: Colors.green),
-          hintText: hint,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        ),
-      ),
-    );
-  }
+  Widget _loginField(String hint, {bool obscure = false}) => TextField(
+    obscureText: obscure,
+    decoration: InputDecoration(hintText: hint, filled: true, fillColor: Colors.white, border: OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide.none)),
+  );
 }
 
-// --- LOGOUT PAGE ---
+// --- NEW: LOGOUT PAGE ---
 class LogoutPage extends StatelessWidget {
   const LogoutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +100,7 @@ class LogoutPage extends StatelessWidget {
               const SizedBox(height: 20),
               const Text("Logging Out?", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
-              const Text("Are you sure you want to leave?", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+              const Text("Are you sure you want to exit MeraDukhan?", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 40),
               SizedBox(
                 width: double.infinity, height: 50,
@@ -165,7 +113,7 @@ class LogoutPage extends StatelessWidget {
               const SizedBox(height: 15),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Stay in App", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                child: const Text("No, Take me back", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
               )
             ],
           ),
@@ -198,8 +146,8 @@ class _MainNavState extends State<MainNav> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text("New Grocery List"),
-        content: TextField(controller: titleC, decoration: const InputDecoration(hintText: "Enter Name...")),
+        title: const Text("Create New List"),
+        content: TextField(controller: titleC, decoration: const InputDecoration(hintText: "e.g. Monthly Ration")),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
           ElevatedButton(onPressed: () {
@@ -235,10 +183,10 @@ class _MainNavState extends State<MainNav> {
             children: [
               Text(oldItem == null ? "Add New Item" : "Edit Item", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
-              TextField(controller: nameC, decoration: const InputDecoration(labelText: "Item Name", border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))))),
+              TextField(controller: nameC, decoration: const InputDecoration(labelText: "Item Name", border: OutlineInputBorder())),
               const SizedBox(height: 15),
               Row(children: [
-                Expanded(child: _drop("Qty", q, ["1", "2", "5", "10", "25"], (v) => setST(() => q = v!))),
+                Expanded(child: _drop("Qty", q, ["1", "2", "5", "10", "25", "50"], (v) => setST(() => q = v!))),
                 const SizedBox(width: 10),
                 Expanded(child: _drop("Unit", u, ["pcs", "kg", "L", "g", "pkt"], (v) => setST(() => u = v!))),
               ]),
@@ -271,7 +219,7 @@ class _MainNavState extends State<MainNav> {
   }
 
   Widget _drop(String l, String val, List<String> opts, ValueChanged<String?> onCh) => DropdownButtonFormField<String>(
-    value: val, decoration: InputDecoration(labelText: l, border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
+    value: val, decoration: InputDecoration(labelText: l, border: const OutlineInputBorder()),
     items: opts.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
     onChanged: onCh,
   );
@@ -295,11 +243,15 @@ class _MainNavState extends State<MainNav> {
         backgroundColor: const Color(0xFF388E3C),
         title: Text(allLists[_activeListIndex].title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
+        elevation: 0,
         actions: [
-          IconButton(icon: const Icon(Icons.logout, color: Colors.white), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const LogoutPage())))
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const LogoutPage())),
+          )
         ],
       ),
-      body: screens[_currentIndex],
+      body: AnimatedSwitcher(duration: const Duration(milliseconds: 300), child: screens[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.green,
@@ -314,10 +266,12 @@ class _MainNavState extends State<MainNav> {
   }
 }
 
-// --- TAB UI ---
+// --- TAB COMPONENTS (Home, Lists, Category) ---
 
 class _HomeTab extends StatelessWidget {
-  final GroceryList list; final VoidCallback onAdd, onRefresh; final Function(GroceryItem) onEdit, onDelete;
+  final GroceryList list;
+  final VoidCallback onAdd, onRefresh;
+  final Function(GroceryItem) onEdit, onDelete;
   const _HomeTab({required this.list, required this.onAdd, required this.onEdit, required this.onDelete, required this.onRefresh});
 
   @override
@@ -335,8 +289,9 @@ class _HomeTab extends StatelessWidget {
         ]),
       ),
       Expanded(
-        child: list.items.isEmpty ? const Center(child: Text("Empty List. Tap + to add items!")) : ListView.builder(
-          itemCount: list.items.length, padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: ListView.builder(
+          itemCount: list.items.length,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           itemBuilder: (context, i) {
             final item = list.items[i];
             return Card(
@@ -363,7 +318,9 @@ class _HomeTab extends StatelessWidget {
 }
 
 class _ListsTab extends StatelessWidget {
-  final List<GroceryList> lists; final VoidCallback onCreate; final Function(int) onSelect;
+  final List<GroceryList> lists;
+  final VoidCallback onCreate;
+  final Function(int) onSelect;
   const _ListsTab({required this.lists, required this.onCreate, required this.onSelect});
 
   @override
@@ -423,7 +380,7 @@ class _CategoryTab extends StatelessWidget {
     );
   }
 }
-//progress
+
 class _CatDetail extends StatelessWidget {
   final String name; final List<GroceryItem> items; final Color color;
   const _CatDetail({required this.name, required this.items, required this.color});
@@ -431,7 +388,7 @@ class _CatDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(name), backgroundColor: color),
-      body: items.isEmpty ? const Center(child: Text("Empty Category")) : ListView.builder(padding: const EdgeInsets.all(16), itemCount: items.length, itemBuilder: (context, i) => Card(child: ListTile(leading: Text(items[i].emoji), title: Text(items[i].name)))),
+      body: items.isEmpty ? const Center(child: Text("No items here!")) : ListView.builder(padding: const EdgeInsets.all(16), itemCount: items.length, itemBuilder: (context, i) => Card(child: ListTile(leading: Text(items[i].emoji), title: Text(items[i].name)))),
     );
   }
 }
