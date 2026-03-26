@@ -423,7 +423,7 @@ class _CategoryTab extends StatelessWidget {
     );
   }
 }
-
+//progress
 class _CatDetail extends StatelessWidget {
   final String name; final List<GroceryItem> items; final Color color;
   const _CatDetail({required this.name, required this.items, required this.color});
