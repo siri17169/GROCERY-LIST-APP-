@@ -11,3 +11,7 @@
   <img src="assets/itemaddlist.png" width="200" alt="Add Items" />
   <img src="assets/updatelistpage.png" width="200" alt="Update List" />
 </p>
+
+<p align="center">
+  <img src="assets/logoutpage.png" width="200" alt="Logout Page" />
+</p>
