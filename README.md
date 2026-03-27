@@ -8,8 +8,9 @@
 
 <p align="center">
   <img src="assets/grocerylistpage.png" width="200" alt="Grocery List" />
+  <img src="assets/updatelistpage.png" width="200" alt="Update List" />
   <img src="assets/categorylist.png" width="200" alt="Categories" />
-    <img src="assets/updatelistpage.png" width="200" alt="Update List" />
+    
 </p>
 
 <p align="center">
