@@ -18,7 +18,6 @@ class MeraDukhanApp extends StatelessWidget {
   }
 }
 
-// --- MODELS ---
 class GroceryItem {
   String name, qty, unit, category, emoji;
   bool isChecked;
@@ -31,7 +30,7 @@ class GroceryList {
   GroceryList({required this.title, required this.items});
 }
 
-// --- GLOBAL CATEGORY DATA ---
+
 final List<Map<String, dynamic>> categoriesData = [
   {"n": "Fruits", "c": const Color(0xFFF8BBD0), "i": "🍎"},
   {"n": "Vegetables", "c": const Color(0xFFC8E6C9), "i": "🥦"},
@@ -47,7 +46,7 @@ final List<Map<String, dynamic>> categoriesData = [
   {"n": "Spices", "c": const Color(0xFFFFE082), "i": "🌶️"},
 ];
 
-// --- UPDATED LOGIN PAGE ---
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
   @override
@@ -82,14 +81,14 @@ class LoginPage extends StatelessWidget {
               const Text("Your Smart Grocery Partner", style: TextStyle(fontSize: 14, color: Colors.white70)),
               const SizedBox(height: 60),
               
-              // INPUT FIELDS
+              
               _loginField(Icons.email_outlined, "Email Address"), 
               const SizedBox(height: 20),
               _loginField(Icons.lock_outline, "Password", obscure: true), 
               
               const SizedBox(height: 40),
               
-              // LOGIN BUTTON
+              
               SizedBox(
                 width: double.infinity, height: 60,
                 child: ElevatedButton(
@@ -136,7 +135,6 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-// --- LOGOUT PAGE ---
 class LogoutPage extends StatelessWidget {
   const LogoutPage({super.key});
   @override
@@ -175,7 +173,7 @@ class LogoutPage extends StatelessWidget {
   }
 }
 
-// --- MAIN NAVIGATION ---
+
 class MainNav extends StatefulWidget {
   const MainNav({super.key});
   @override
